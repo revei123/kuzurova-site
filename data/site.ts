@@ -6,7 +6,9 @@ export const site = {
   city: "Минск",
   country: "Беларусь",
   cityLine: "Минск, Беларусь",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://kuzurova-site.vercel.app"),
   title: "Кузурова Дарья Дмитриевна — юрист в Минске",
   description:
     "Персональная юридическая практика в Минске. Консультации, анализ документов и спокойное сопровождение юридической ситуации. Прототип сайта.",
