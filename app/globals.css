@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ivory: #f3eee6;
+  --color-paper: #f7f3ed;
+  --color-sand: #e7dfd4;
+  --color-ink: #1a1714;
+  --color-muted: #5c564e;
+  --color-wine: #5c2433;
+  --color-line: #ddd4c8;
+  --color-night: #14110f;
+  --font-sans: var(--font-manrope), "Manrope", sans-serif;
+  --font-serif: var(--font-serif-face), "Cormorant Garamond", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #ead7dc;
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-wine);
+  outline-offset: 3px;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+.page-enter {
+  animation: page-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.image-reveal {
+  animation: image-reveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes image-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.rise {
+  animation: rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.draw {
+  box-shadow: inset 0 -1px 0 transparent;
+  transition: box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.draw:hover,
+.draw:focus-visible {
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+
+.service-row .service-copy {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-row .service-copy {
+    grid-template-rows: 0fr;
+  }
+
+  .service-row:hover .service-copy,
+  .service-row:focus-within .service-copy {
+    grid-template-rows: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter,
+  .image-reveal,
+  .rise {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
